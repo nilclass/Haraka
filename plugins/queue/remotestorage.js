@@ -59,13 +59,11 @@ remoteStorage.defineModule('messages', function(client) {
           return callback(errors, null);
         } else {
 
-          client.storeObject('message', messagePath(message.id), message);
+          client.storeObject('message', messagePath(message.id), message, callback);
 
           console.log('message stored', messagePath(message.id), message);
 
           remoteStorage.syncNow('/');
-
-          return callback(null, message);
         }
 
       },
