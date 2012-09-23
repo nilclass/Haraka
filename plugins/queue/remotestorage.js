@@ -1,7 +1,7 @@
 
 var console = require('console');
 
-var remoteStorage = require('../remoteStorage.js/build/latest/remoteStorage-node-debug');
+var remoteStorage = require('./remoteStorage-node-debug');
 
 remoteStorage.defineModule('messages', function(client) {
 
