@@ -5,8 +5,6 @@ var remoteStorage = require('../remoteStorage.js/build/latest/remoteStorage-node
 
 remoteStorage.defineModule('messages', function(client) {
 
-  client.sync('');
-
   function messagePath(id) {
     return 'pool/' + id;
   }
@@ -17,10 +15,6 @@ remoteStorage.defineModule('messages', function(client) {
       validateMessage: function(message) {
 
         var errors = {};
-
-        if(! message.id) {
-          message.id = getUuid();
-        }
 
         function addError(key, message) {
           if(! (key in errors)) {
@@ -40,7 +34,7 @@ remoteStorage.defineModule('messages', function(client) {
           }
         }
 
-        validateAttrPresence(message, 'from', 'to', 'body');
+        validateAttrPresence(message, 'id', 'from', 'to', 'body');
 
         if(message.body && (! message.subject)) {
           message.subject = makeSubject(message.body);
